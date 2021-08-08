@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="./theme.css">
     <style>
         [v-cloak] {
@@ -24,20 +23,14 @@
     <div class="container" id="app" v-cloak>
         <div class="cart">
             <h1 class="cart_title">{{ title }}</h1>
-            <div class="mb-3">
-                <input type="text" class="form-control" id="exampleInputEmail1" v-bind:placeholder="placeholderString" v-model="inputValue" v-on:keypress="KeyPressInput" />
-            </div>
-            <h2 class="cart_title">Number of notes: {{ notes.length }}</h2>
             <div class="cart_line"></div>
-            <button type="button" class="btn btn-primary cart-btn" v-on:click="addNewNote"><i class="far fa-clipboard"></i>Add new notes
+            <button type="button" class="btn btn-primary" v-on:click="addNewNote">Add new notes
         </button>
             <div class="cart_line"></div>
             <ul class="list" v-if="notes.length !== 0">
                 <li class="list-item" v-for="(note, index) in notes" v-bind:key="note">
                     {{ index + 1 }}. {{ note }}
                     <div class="list-item-btn">
-                        <a href="edit.html" type="button" class="btn btn-success" v-on:click="seeArray(index)">Edit
-                    </a>
                         <button type="button" class="btn btn-danger" v-on:click="deleteNote(index)">Delete
                     </button>
                     </div>

@@ -135,3 +135,56 @@ Main style
     align-items: center;
     margin-bottom: 15px;
 }
+
+.list-item-btn button {
+    margin-left: 10px;
+}
+
+.list-item-btn button:first-child {
+    margin: 0;
+}
+
+.cart-add {
+    color: #198754;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.cart-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.single {
+    margin-top: 40px;
+    padding: 40px 20px 60px 20px;
+    border-radius: 5px;
+    min-height: 100px;
+    width: 100%;
+    border: 1px solid #f8f9fa;
+    background: #f8f9fa;
+}
+
+.single-value {
+    font-size: 18px;
+    color: black;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.single-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.single-back {
+    display: block;
+    margin-bottom: 40px;
+    text-decoration: none;
+}
+
+.cart-btn i {
+    margin-right: 8px;
+}

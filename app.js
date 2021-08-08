@@ -1,10 +1,14 @@
 const App = {
     data() {
         return {
-            placeholderString: 'Введите название заметки',
-            title: 'Создание заметок',
+            placeholderString: 'Enter a title for the note',
+            title: 'Create a new note',
             inputValue: '',
+            inputChange: '',
+            editTitle: 'Edit page',
             notes: [],
+            num: [],
+            changeNum: 'Change'
         }
     },
 
@@ -16,9 +20,38 @@ const App = {
                 localStorage.removeItem('notes');
             }
         }
+
+        if (localStorage.getItem('num')) {
+            try {
+                this.num = JSON.parse(localStorage.getItem('num'));
+            } catch (e) {
+                localStorage.removeItem('num');
+            }
+        }
     },
 
     methods: {
+
+        seeArray(index) {
+            console.log(index);
+            this.num.push(index)
+            console.log(this.num);
+            this.saveNum();
+        },
+
+        saveNum() {
+            const parsedNum = JSON.stringify(this.num);
+            localStorage.setItem('num', parsedNum);
+        },
+
+        changeNotes() {
+            const count = this.num[this.num.length - 1];
+            if (this.inputChange !== '') {
+                this.notes.splice(count, 1, this.inputChange);
+                this.inputChange = '';
+                this.saveNotes();
+            }
+        },
 
         addNewNote() {
             if (this.inputValue !== '') {
@@ -33,24 +66,21 @@ const App = {
             this.saveNotes();
         },
 
+        KeyPressInput(event) {
+            if (event.key === 'Enter') {
+                this.addNewNote();
+                this.saveNotes();
+            }
+        },
+
         saveNotes() {
             const parsed = JSON.stringify(this.notes);
             localStorage.setItem('notes', parsed);
         },
-
-        KeyPressInput(event) {
-            if (event.key === 'Enter') {
-                this.addNewNote();
-            }
-        },
     },
-    computed: {
+    computed: {},
 
-    },
-
-    watch: {
-
-    }
+    watch: {}
 }
 
 Vue.createApp(App).mount('#app')
