@@ -5,10 +5,13 @@ const App = {
             title: 'Create a new note',
             inputValue: '',
             inputChange: '',
+            inputTask: '',
             editTitle: 'Edit page',
             notes: [],
             num: [],
-            changeNum: 'Change'
+            task: [],
+            changeNum: 'Change title',
+            toDo: 'Write an assignment'
         }
     },
 
@@ -26,6 +29,14 @@ const App = {
                 this.num = JSON.parse(localStorage.getItem('num'));
             } catch (e) {
                 localStorage.removeItem('num');
+            }
+        }
+
+        if (localStorage.getItem('task')) {
+            try {
+                this.task = JSON.parse(localStorage.getItem('task'));
+            } catch (e) {
+                localStorage.removeItem('task');
             }
         }
     },
@@ -51,6 +62,24 @@ const App = {
                 this.inputChange = '';
                 this.saveNotes();
             }
+        },
+
+        AddNewTask() {
+            if (this.inputTask !== '') {
+                this.task.push(this.inputTask);
+                this.inputTask = '';
+                this.saveTask();
+            }
+        },
+
+        deleteTask(index) {
+            this.task.splice(index, 1);
+            this.saveTask();
+        },
+
+        saveTask() {
+            const parsedTask = JSON.stringify(this.task);
+            localStorage.setItem('task', parsedTask);
         },
 
         addNewNote() {

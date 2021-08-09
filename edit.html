@@ -38,10 +38,22 @@
             <h1 class="cart_title">{{ editTitle }}</h1>
             <h2 class="cart_title">Number {{ num[num.length - 1] + 1 }} of {{ notes.length }}</h2>
         </div>
-        <p class="cart_title">Value: <span class="single-value">{{ notes[num[num.length - 1]] }}</span></p>
         <input type="text" class="form-control" id="exampleInputEmail1" v-bind:placeholder="changeNum"
                v-model="inputChange"/>
-        <button type="button" class="btn btn-success mt-3" v-on:click="changeNotes()">Save changes</button>
+        <input type="text" class="toDo form-control" id="exampleInputEmail2" v-bind:placeholder="toDo" v-model="inputTask"/>
+        <button type="button" class="btn btn-success mt-3 single-wrapper-btn" v-on:click="AddNewTask"><i class="far fa-plus-square"></i>Add task</button>
+        <div class="cart_line"></div>
+        <ul class="toDo-list">
+            <li v-for="(value, index) in task">
+                {{ index + 1 }}. {{ value }}
+                <div class="toDo-list-item">
+                <input class="form-check-input" type="checkbox">
+                <button type="button" class="btn btn-danger" v-on:click="deleteTask(index)">Delete
+                </button>
+                </div>
+            </li>
+        </ul>
+        <button type="button" class="btn btn-success mt-3" v-on:click="changeNotes">Save changes</button>
     </div>
 </div>
 
